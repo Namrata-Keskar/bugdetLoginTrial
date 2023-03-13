@@ -4,10 +4,12 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_signin_example/reusable_widgets/resuable_widget.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter_signin_example/screens/mainscreen.dart';
 
 
 import '../utils/color_utils.dart';
 import 'home_screen.dart';
+import 'mainscreen.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -70,7 +72,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       password: _passwordTextController.text).then((value) {
                         print("CreatedNew Account");
                         Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => HomeScreen()));
+                        MaterialPageRoute(builder: (context) => MainScreen()));
                   }).onError((error, stackTrace) {
                     print("Error ${error.toString()}");
                     setState(() {
