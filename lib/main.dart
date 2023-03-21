@@ -1,5 +1,6 @@
 import 'package:flutter_signin_example/event.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_signin_example/screens/home_screen.dart';
 import 'screens/mainscreen.dart';
 
 void main() {
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
 
         primarySwatch: Colors.amber,
       ),
-      home: const MainScreen(),
+      home: HomeScreen(),
     );
   }
 }

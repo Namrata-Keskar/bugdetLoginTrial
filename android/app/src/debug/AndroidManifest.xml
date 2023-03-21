@@ -5,4 +5,13 @@
          to allow setting breakpoints, to provide hot reload, etc.
     -->
     <uses-permission android:name="android.permission.INTERNET"/>
+
+    <meta-data
+        android:name="com.example.flutter_signin_example.version"
+        android:value="@integer/google_play_services_version" />
+
+    <meta-data
+        android:name="com.example.flutter_signin_example.vision.DEPENDENCIES"
+        android:value="barcode" />
+
 </manifest>

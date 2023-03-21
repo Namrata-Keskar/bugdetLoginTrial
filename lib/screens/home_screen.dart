@@ -4,10 +4,14 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_signin_example/screens/signin_screen.dart';
 import 'dart:developer';
+import 'package:flutter_signin_example/Controller/word_controller.dart';
+import 'package:get/get.dart';
+//import 'package:get/get_core/src/get_main.dart';
 
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  HomeScreen({Key? key}) : super(key: key);
+  WordController wordCont = Get.put(WordController());
 
 
   @override
@@ -36,6 +40,9 @@ class _HomeScreenState extends State<HomeScreen> {
         )
       ),
 
+
     );
+
+
   }
 }
