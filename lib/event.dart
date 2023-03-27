@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_signin_example/screens/details_screen.dart';
+
 
 
 
@@ -43,7 +45,10 @@ class EventScreen extends StatelessWidget {
                   child: IconButton(
                     icon: const Icon(Icons.search),
                     color: Colors.black,
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => DetailsScreen()));
+                    },
                   ),
                 ),
               ),

@@ -117,6 +117,8 @@ class _MainScreenState extends State<MainScreen> {
                           separatorBuilder: (BuildContext context, index){
                             return Divider(thickness: 2, color: Colors.black);
                            }, ),
+
+                  //THIS IS WHERE OUR LOG OUT BUTTON CODE IS CURRENTLY COMMENTED OUT DUE TO FORMATTING ISSUES
                   // child: Text("Logout"),
                   //         onPressed: () {
                   //           FirebaseAuth.instance.signOut().then((value) {
