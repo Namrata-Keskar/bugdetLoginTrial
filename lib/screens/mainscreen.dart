@@ -30,6 +30,68 @@ class _MainScreenState extends State<MainScreen> {
         _selectedIndex = index;
       });
     }
+
+    //if(_selectedIndex == 0 && index == 0){
+
+      // Widget build(BuildContext context) {
+      //   return GetBuilder<WordController>(
+      //       init: WordController(),
+      //       initState: (_){},
+      //
+      //       builder: (wordController){
+      //         wordController.getData();
+      //         return Scaffold(
+      //             body: Center(
+      //               //child: ElevatedButton(
+      //               child: wordController.isLoading ? CircularProgressIndicator() :
+      //               ListView.separated(
+      //                 itemCount: wordController.wordList.length,
+      //                 itemBuilder: (BuildContext context, index){
+      //                   return Card(
+      //                     child: Row(
+      //                       children: [
+      //                         Column(
+      //                           children: [
+      //                             Text(wordController.wordList[index].title, style: TextStyle(fontSize: 19, fontWeight: FontWeight.bold),overflow: TextOverflow.visible,textAlign: TextAlign.start),
+      //                             Text(wordController.wordList[index].meaning, style: TextStyle(fontSize: 16), overflow: TextOverflow.visible,textAlign: TextAlign.start),
+      //                           ],
+      //                         ),
+      //                         Row(
+      //                           children: [
+      //                             IconButton(onPressed: (){
+      //                               //Opens to more details on the event
+      //                             }, icon: Icon(FontAwesomeIcons.edit)),
+      //                             IconButton(onPressed: (){}, icon: Icon(FontAwesomeIcons.deleteLeft))
+      //                             //Removes from database
+      //                           ],
+      //                         )],
+      //                     ),
+      //                   );
+      //                 },
+      //                 separatorBuilder: (BuildContext context, index){
+      //                   return Divider(thickness: 2, color: Colors.black);
+      //                 }, ),
+      //
+      //               //THIS IS WHERE OUR LOG OUT BUTTON CODE IS CURRENTLY COMMENTED OUT DUE TO FORMATTING ISSUES
+      //               // child: Text("Logout"),
+      //               //         onPressed: () {
+      //               //           FirebaseAuth.instance.signOut().then((value) {
+      //               //           print("Signed Out");
+      //               //           Navigator.push(context,
+      //               //             MaterialPageRoute(builder: (context) => SignInScreen()));
+      //               //   });
+      //               //
+      //               // },
+      //
+      //               //),
+      //             )
+      //         );
+      //
+      //       });
+      // }
+   // }
+
+
   }
 
   @override
@@ -86,9 +148,12 @@ class _MainScreenState extends State<MainScreen> {
                 ),
               ],
               onTap: _navigateBottomBar,
+
             ),
+
             body: Center(
                 //child: ElevatedButton(
+
                   child: wordController.isLoading ? CircularProgressIndicator() :
                       ListView.separated(
                           itemCount: wordController.wordList.length,
@@ -118,6 +183,7 @@ class _MainScreenState extends State<MainScreen> {
                             return Divider(thickness: 2, color: Colors.black);
                            }, ),
 
+
                   //THIS IS WHERE OUR LOG OUT BUTTON CODE IS CURRENTLY COMMENTED OUT DUE TO FORMATTING ISSUES
                   // child: Text("Logout"),
                   //         onPressed: () {
@@ -135,5 +201,7 @@ class _MainScreenState extends State<MainScreen> {
 
     });
   }
+
+
 
 }
