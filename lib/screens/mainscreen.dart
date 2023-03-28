@@ -20,12 +20,19 @@ class _MainScreenState extends State<MainScreen> {
 
 
   int _selectedIndex = 1;
+  bool isZero = false;
+  bool isOne = false;
+  bool isTwo = false;
 
-  void _navigateBottomBar(int index) {
-    if(_selectedIndex == 1 && index == 1){
-      Navigator.push(context, MaterialPageRoute(builder: (context) => EventScreen()));
+  void _navigateBottomBar(int index) async{
+    print(index);
+    if(_selectedIndex == 1 && index == 1) {
+      isOne = true;
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => EventScreen()));
     }
-    else {
+
+    else{
       setState(() {
         _selectedIndex = index;
       });
@@ -95,35 +102,38 @@ class _MainScreenState extends State<MainScreen> {
   }
 
   @override
-  // Widget build(BuildContext context) {
-  //   return Scaffold(
-  //     body: Center(
-  //         child: ElevatedButton(
-  //           child: Text("Logout"),
-  //           onPressed: () {
-  //             FirebaseAuth.instance.signOut().then((value) {
-  //               print("Signed Out");
-  //               Navigator.push(context,
-  //                   MaterialPageRoute(builder: (context) => SignInScreen()));
-  //             });
-  //
-  //
-  //           },
-  //         )
-  //     ),
-  //   );
-  // }
+  Widget logout(BuildContext context) {
+    return Scaffold(
+      body: Center(
+          child: ElevatedButton(
+            child: Text("Logout"),
+            onPressed: () {
+              FirebaseAuth.instance.signOut().then((value) {
+                print("Signed Out");
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => SignInScreen()));
+              });
+
+
+            },
+          )
+      ),
+    );
+  }
 
 
   Widget build(BuildContext context) {
+
     return GetBuilder<WordController>(
         init: WordController(),
         initState: (_){},
 
+
         builder: (wordController){
+          print("BUILDERRRR");
           wordController.getData();
           return Scaffold(
-            appBar: AppBar(
+              appBar: AppBar(
               title: Text("Budget"),
               centerTitle: true,
             ),
@@ -148,6 +158,7 @@ class _MainScreenState extends State<MainScreen> {
                 ),
               ],
               onTap: _navigateBottomBar,
+
 
             ),
 
@@ -182,6 +193,9 @@ class _MainScreenState extends State<MainScreen> {
                           separatorBuilder: (BuildContext context, index){
                             return Divider(thickness: 2, color: Colors.black);
                            }, ),
+
+
+                  //ajkqfhkjdfnkfjs
 
 
                   //THIS IS WHERE OUR LOG OUT BUTTON CODE IS CURRENTLY COMMENTED OUT DUE TO FORMATTING ISSUES
