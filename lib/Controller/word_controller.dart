@@ -34,7 +34,7 @@ class WordController extends GetxController{
     for(var word in userDoc.docs) {
       //Adds the event information from the querysnapshot into the list view where it will display
 
-      wordList.add(WordModel(word['name'], word['price'], word.id));
+      wordList.add(WordModel(word['date'], word['name'], word['url'], word['img_link'], word.id));
       //If you want to add the price to the total budget you would access the price here in word['price']
       //Not sure if the price will save as a string or an integer though
     }

@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -68,8 +69,25 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   height: 20,
                 ),
                 signInSignUpButton(context, false, () {
+
+
                   FirebaseAuth.instance.createUserWithEmailAndPassword(email: _emailTextController.text,
                       password: _passwordTextController.text).then((value) {
+                    String _uid = "";
+
+                    print("ALABAMAAA");
+                    final FirebaseAuth _auth = FirebaseAuth.instance;
+                    User? user = _auth.currentUser;
+                    print("GORGG");
+                    print(user);
+                    //Getting the current user's uid
+                    _uid = user!.uid;
+
+                    print("THE ALA UID IS");
+                    print(_uid);
+
+                    addUserDetails(_uid);
+
                         print("CreatedNew Account");
                         Navigator.push(context,
                         MaterialPageRoute(builder: (context) => MainScreen()));
@@ -119,6 +137,18 @@ class _SignUpScreenState extends State<SignUpScreen> {
     }
     return SizedBox(height: 0,);
   }
+
+  Future addUserDetails(userid) async{
+    print("in user details");
+    await FirebaseFirestore.instance.collection('boba').doc(userid).collection("total").doc("tot").set(
+        {'finalPrice': 0}
+    );
+    // await FirebaseFirestore.instance.collection('boba').doc(userid).collection('events').doc("default").set({
+    //   'none': 'none'
+    // });
+
+  }
+
 
 
 }

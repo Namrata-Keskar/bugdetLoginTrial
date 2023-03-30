@@ -1,8 +1,13 @@
+import 'dart:ffi';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
 import 'api.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/gestures.dart';
 
@@ -25,8 +30,12 @@ class EventScreen extends StatefulWidget {
   const EventScreen({Key? key}) : super(key: key);
 
   @override
+
   _EventScreenState createState() => _EventScreenState();
+
 }
+
+
 
 class _EventScreenState extends State<EventScreen> {
   List<dynamic> events = [];
@@ -72,10 +81,11 @@ class _EventScreenState extends State<EventScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Budget"),
-        centerTitle: true,
-      ),
+      // appBar: AppBar(
+      //   title: Text("Budget"),
+      //   centerTitle: true,
+      //
+      // ),
       body: Padding(
         padding: const EdgeInsets.all(30.0),
         child: Column(
@@ -114,7 +124,7 @@ class _EventScreenState extends State<EventScreen> {
               child: Center(
                 child: IconButton(
                   icon: const Icon(Icons.search),
-                  color: Colors.amber,
+                  color: Colors.red,
                   splashRadius: 20.0,
                   onPressed: () {
                     String searchText = searchController.text;
@@ -256,6 +266,56 @@ class _EventScreenState extends State<EventScreen> {
                                       print(events[index].price);//price (double)
                                       print(events[index].id);//event id
                                       print(link);//event url
+                                      String _uid = "";
+                                      final FirebaseAuth _auth = FirebaseAuth.instance;
+                                      User? user = _auth.currentUser;
+                                      //Getting the current user's uid
+                                      _uid = user!.uid;
+
+                                      print("ELEVENNN");
+                                      print(_uid);
+
+                                      int fin = 0;
+                                      double multiplier = .5;
+                                      int pric = (events[index].price).round();
+                                      print("PRICE IS");
+                                      print(pric);
+
+
+                                      QuerySnapshot userDoc = await FirebaseFirestore.instance.collection('boba').doc(_uid).collection('total').get();
+                                      print("DOCS AREE");
+                                      print(userDoc);
+
+                                      for(var tot in userDoc.docs){
+                                        print("jhjh");
+                                        print(tot['finalPrice']);
+                                        //final budget
+                                        fin = tot['finalPrice'];
+                                        print("FIN IS");
+                                        print(fin);
+                                        fin = fin + pric;
+
+
+                                        Map<String,dynamic> data = {
+                                          'finalPrice': fin
+                                        };
+                                        FirebaseFirestore.instance.collection('boba').doc(_uid).collection('total').doc("tot").set(data);
+                                      }
+
+
+
+
+                                      Map<String, String> dataToSave = {
+                                        'name': events[index].name,
+                                        'date': events[index].date,
+                                        'url': link,
+                                        'price': events[index].price.toString(),
+                                        'img_link': events[index].thumbnail,
+                                        'id': events[index].id
+                                      };
+
+                                      CollectionReference cf  = FirebaseFirestore.instance.collection('boba').doc(_uid).collection('events');
+                                      cf.add(dataToSave);
                                       //Image.network(events[index].thumbnail),
                                     }
                                   },

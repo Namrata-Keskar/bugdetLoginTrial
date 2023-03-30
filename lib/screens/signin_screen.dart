@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
@@ -55,9 +56,12 @@ class _SignInScreenState extends State<SignInScreen> {
                 ),
                 signInSignUpButton(context, true, (){
 
+
                   FirebaseAuth.instance.signInWithEmailAndPassword
                     (email: _emailTextController.text,
                       password: _passwordTextConrtoller.text).then((value){
+
+
                     Navigator.push(context, MaterialPageRoute(builder: (context) => MainScreen()));
                   }).onError((error, stackTrace){
                     print("Error ${error.toString()}");
@@ -111,6 +115,7 @@ class _SignInScreenState extends State<SignInScreen> {
     }
     return SizedBox(height: 0,);
   }
+  
 
   Row signUpOption(){
     return Row(
